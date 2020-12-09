@@ -52,4 +52,19 @@ public class TotalCalculatorTest {
 				list.add(null);
 		        totale = calculator.getOrderPrice(list,user);
 		    }
+			
+			@Test
+			public void discount50Test() throws TakeAwayBillException {
+				list.add(new MenuItem(MenuItem.type.Gelato,"Pinguino",6.50));
+				list.add(new MenuItem(MenuItem.type.Gelato,"BananaSplit",6.50));
+				list.add(new MenuItem(MenuItem.type.Gelato,"Biancaneve",6.50));
+				list.add(new MenuItem(MenuItem.type.Gelato,"Cioccolato",5.00));
+				list.add(new MenuItem(MenuItem.type.Gelato,"Banana",3.00));
+				list.add(new MenuItem(MenuItem.type.Gelato,"FiorDiLatte",5.00));
+				list.add(new MenuItem(MenuItem.type.Gelato,"Fragola",5.00));
+				totale = calculator.getOrderPrice(list, user);
+				assertEquals(36.00,totale,Diff);
+			}		
+			
+			
 } 
