@@ -12,7 +12,8 @@ public class TotalCalculator implements TakeAwayBill {
     public double getOrderPrice(List < MenuItem > items, User user) throws TakeAwayBillException {
          double tot = 0.0;   
          int numGel=0;
-         MenuItem GelatoMenoCostoso=null;      
+         MenuItem GelatoMenoCostoso=null;
+         double BudGel = 0;
 
 
         if (items == null) {
@@ -27,16 +28,24 @@ public class TotalCalculator implements TakeAwayBill {
             tot +=i.getPrice();
             if (i.getItemType() == MenuItem.type.Gelato) {
                 numGel++;
+                BudGel += i.getPrice();
 
                 if ((GelatoMenoCostoso == null) || (GelatoMenoCostoso.getPrice() > i.getPrice())) {
                     GelatoMenoCostoso = i;
                 }
             }
+            if (i.getItemType() == MenuItem.type.Budino) {
+                BudGel += i.getPrice();
+                }
 
-            } 
+            }
+  
             if (numGel > 5) {
                 tot -= GelatoMenoCostoso.getPrice() * 0.5;
             }
+            if (BudGel > 50) {
+                tot -= tot * 0.1;
+                }
         return tot;     
     }
 }
