@@ -46,6 +46,12 @@ public class TotalCalculatorTest {
 
         assertEquals(17.00,totale,Diff);
     }
+	
+			@Test(expected = TakeAwayBillException.class) 
+		    public void nullInListTest() throws TakeAwayBillException {
+				list.add(null);
+		        totale = calculator.getOrderPrice(list,user);
+		    }
 			
 			@Test
 			public void discount50Test() throws TakeAwayBillException {
@@ -73,9 +79,16 @@ public class TotalCalculatorTest {
 			@Test(expected = TakeAwayBillException.class) 
 			public void max30Test() throws TakeAwayBillException {
 				for(int i=0; i<32; i++) {
-					list.add(new MenuItem(MenuItem.type.Gelato,"Biancaneve",6.00));
+				list.add(new MenuItem(MenuItem.type.Gelato,"Biancaneve",6.00));
 				}
 				totale = calculator.getOrderPrice(list,user);
+			}
+			
+			@Test
+			public void plus050Test() throws TakeAwayBillException {
+				list.add(new MenuItem(MenuItem.type.Budino,"CoppaNafta",4.00));
+				totale = calculator.getOrderPrice(list, user);
+				assertEquals(4.50,totale,Diff);
 			}
 			
 			

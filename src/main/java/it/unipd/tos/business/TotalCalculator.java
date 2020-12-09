@@ -28,7 +28,7 @@ public class TotalCalculator implements TakeAwayBill {
         }
         
         if (items.size() > 30) {
-             throw new TakeAwayBillException("30 elememti");
+        throw new TakeAwayBillException("30 elememti");
         }
 
         //costo
@@ -53,6 +53,10 @@ public class TotalCalculator implements TakeAwayBill {
         }
         if (BudGel > 50) {
         tot -= tot * 0.1;
+        }
+        
+        if (tot<10) {
+        tot +=0.50;
         }
        
 
